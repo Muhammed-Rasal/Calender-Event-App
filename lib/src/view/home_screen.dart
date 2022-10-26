@@ -20,7 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
     getSavedTasks();
   }
 
-   
   bool _ispressed = false;
 
   CalendarWeekController _controller = CalendarWeekController();
@@ -28,18 +27,21 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController titleController = TextEditingController();
 
   TextEditingController timeController = TextEditingController();
-  TextEditingController _selectedDate = TextEditingController();
+  TextEditingController _dateController = TextEditingController();
 
   int reminderCount = 0;
 
   String viewDate = '';
 
+ 
   List<String> tasks = [];
+
   saveTasks() async {
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
+
     sharedPrefs.setStringList('items', tasks);
     sharedPrefs.setString('date', viewDate);
-    sharedPrefs.setString('selectedDate', _selectedDate.text);
+    sharedPrefs.setString('selectedDate', _dateController.text);
   }
 
   getSavedTasks() async {
@@ -48,11 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       tasks = prefs.getStringList('items') ?? tasks;
       viewDate = prefs.getString('date') ?? viewDate;
-      _selectedDate.text = prefs.getString('selectedDate') ?? '';
+      _dateController.text = prefs.getString('selectedDate') ?? '';
     });
     print(tasks);
     print(viewDate);
-    print(_selectedDate.text);
+    print(_dateController.text);
   }
 
   removeSavedData() async {
@@ -90,6 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
+        _dateController.text =
+            '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
       });
     }
   }
@@ -132,6 +136,8 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.add, color: Colors.red),
             tooltip: 'ADD REMINDER',
             onPressed: () {
+              //  _dateController.text =
+              //               '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
               // tasks.add(titleController.text);
               //reminderCount++;
               showDialog<String>(
@@ -169,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 15,
                         ),
                         TextField(
-                          controller: _selectedDate,
+                          controller: _dateController,
                           onTap: () {
                             _selectDate(context);
                           },
@@ -205,10 +211,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         // getSavedTasks();
                         tasks.add(titleController.text);
                         titleController.clear();
-                        _selectedDate.text =
+
+                        _dateController.text =
                             '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
 
-                        print('choosed date:' + _selectedDate.text);
+                        print('choosed date:' + _dateController.text);
 
                         Navigator.of(context).pop();
                       },
@@ -310,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (BuildContext context, indexOfReminder) =>
                       _ispressed == true
                           ? ListTile(
-                              title: _selectedDate.text == viewDate
+                              title: _dateController.text == viewDate
                                   ? Container(
                                       height: 45,
                                       decoration: BoxDecoration(
@@ -332,7 +339,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   : SizedBox())
                           : SizedBox(),
                   separatorBuilder: (BuildContext context, int index) =>
-                      Divider(
+                      const Divider(
                         //color: Colors.blueGrey[100],
                         color: Colors.black,
                       ),
