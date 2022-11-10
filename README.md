@@ -1,16 +1,26 @@
 # calender
 
-A new Flutter project.
+Calender Event App made using flutter,I used flutter_calender_week package and stored the event from user to local storage using shared prefrences using state management Provider
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+Screenshots:-
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![Screenshot_1668083239](https://user-images.githubusercontent.com/105491470/201092093-2cec789a-f823-416b-b084-7c9837833e57.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+   ![Screenshot_1668083246](https://user-images.githubusercontent.com/105491470/201092244-dd0732a6-0e87-4f4e-bcc1-374b19acae4c.png)
+
+
+
+![Screenshot_1668083268](https://user-images.githubusercontent.com/105491470/201092402-ac9437b9-0672-498f-9098-3ef95956963d.png)
+   
+   
+
+![Screenshot_1668083297](https://user-images.githubusercontent.com/105491470/201092457-ae5a8bd6-60e1-4846-ba6f-35c87fd27272.png)
+
+
+![Screenshot_1668083369](https://user-images.githubusercontent.com/105491470/201092481-7728ccf4-544f-4831-be29-b53e67c9b789.png)
+
+
